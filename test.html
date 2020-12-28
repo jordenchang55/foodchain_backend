@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script crossorigin="anonymous"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
+<form id="loginForm">
+    <label for="username">User: </label><input id="username" name="username"><br/>
+    <label for="password">Password: </label><input id="password" name="password" type="password"><br/>
+    <button onClick="login()" type="button">Login</button>
+</form>
 <script>
-    io({ auth: { token: "aaa" } });
+    function login() {
+        const data = {
+            username: $('#username')[0].value,
+            password: $('#password')[0].value,
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: JSON.stringify(data),
+            success: function (res) {
+                console.log('success');
+                console.log(res);
+                io({ auth: { token: res.token } });
+            },
+            dataType: "json",
+            contentType: "application/json"
+        });
+    }
+
 </script>
 </body>
 </html>

@@ -30,4 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', rootRouter);
 
+app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 http.listen(process.env.PORT || '3000');

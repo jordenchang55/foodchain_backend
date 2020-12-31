@@ -5,22 +5,18 @@ import logger from 'morgan';
 import { createServer } from 'http';
 import socketIO from 'socket.io';
 import cors from 'cors';
-import jwt from 'jsonwebtoken';
 import rootRouter from './routes';
+import { Room } from './logic/Room';
+import EventManager from './models/EventManager';
 
 const app = express();
 
 const http = createServer(app);
 const io = socketIO(http);
 
-io.on('connection', (socket) => {
-    try {
-        const payload = jwt.verify(socket.handshake.auth.token, process.env.token_secret);
-        console.log(`user: ${payload.username} -- connected`);
-    } catch (e) {
-        socket.disconnect();
-    }
-});
+const eventManager = new EventManager(io);
+// eslint-disable-next-line no-unused-vars
+const room = new Room(eventManager);
 
 app.use(cors());
 app.use(logger('dev'));

@@ -20,4 +20,25 @@ describe('test Game', () => {
             });
         });
     });
+
+    describe('askFirstRestaurant', () => {
+        it('not skippable', () => {
+            const game = new Game(eventMgr);
+            game.askFirstRestaurant('user1', false);
+            const mockEventMgr = EventManager.mock.instances[0];
+            expect(mockEventMgr.notifyAll).toBeCalledWith('first_restaurant_decision', {
+                nextPlayer: 'user1',
+                skippable: false,
+            });
+        });
+        it('skippable', () => {
+            const game = new Game(eventMgr);
+            game.askFirstRestaurant('user1', true);
+            const mockEventMgr = EventManager.mock.instances[0];
+            expect(mockEventMgr.notifyAll).toBeCalledWith('first_restaurant_decision', {
+                nextPlayer: 'user1',
+                skippable: true,
+            });
+        });
+    });
 });

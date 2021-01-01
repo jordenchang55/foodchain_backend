@@ -17,4 +17,11 @@ export default class Game {
             selected: this.workingOrder,
         });
     }
+
+    askFirstRestaurant(username, skippable) {
+        this.eventManager.notifyAll('first_restaurant_decision', {
+            nextPlayer: username,
+            skippable,
+        });
+    }
 }

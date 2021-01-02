@@ -353,3 +353,190 @@ export const employees = {
         descriptionLabel: '4x:',
     },
 };
+
+export const mapTiles = {
+    M01: {
+        houseTiles: [
+            {
+                tileId: 'H02',
+                positions: [[0, 3], [0, 4], [1, 3], [1, 4]],
+            },
+        ],
+        image: 'img/map/01.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2], [2, 3], [2, 4]],
+    },
+    M02: {
+        image: 'img/map/02.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2], [2, 3], [2, 4]],
+        houseTiles: [
+            {
+                tileId: 'H04',
+                positions: [[3, 0], [4, 0], [3, 1], [4, 1]],
+            },
+        ],
+    },
+    M03: {
+        houseTiles: [
+            {
+                tileId: 'H05',
+                positions: [[1, 2], [1, 3], [2, 2], [2, 3]],
+            },
+        ],
+        image: 'img/map/03.svg',
+        roads: [
+            [0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [0, 1], [4, 1], [0, 2],
+            [4, 2], [0, 3], [4, 3], [0, 4], [1, 4], [2, 4], [3, 4], [4, 4],
+        ],
+    },
+    M04: {
+        image: 'img/map/04.svg',
+        roads: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [0, 1], [4, 1], [0, 2], [4, 2]],
+        houseTiles: [
+            {
+                tileId: 'H07',
+                positions: [[1, 1], [2, 1], [2, 1], [2, 2]],
+            },
+        ],
+    },
+    M05: {
+        image: 'img/map/05.svg',
+        roads: [[0, 0], [1, 0], [2, 0], [0, 1], [0, 2], [4, 2], [4, 3], [4, 4]],
+        houseTiles: [
+            {
+                tileId: 'H08',
+                positions: [[2, 2], [3, 2], [2, 3], [3, 3]],
+            },
+        ],
+        drinks: [
+            { type: 'beer', position: [1, 1] },
+        ],
+    },
+    M06: {
+        image: 'img/map/06.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2]],
+        houseTiles: [
+            {
+                tileId: 'H10',
+                positions: [[0, 0], [1, 0], [0, 1], [1, 1]],
+            },
+        ],
+    },
+    M07: {
+        image: 'img/map/07.svg',
+        roads: [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4]],
+        crossing: [[0, 2], [1, 2], [2, 2], [3, 2], [4, 2]],
+        houseTiles: [
+            {
+                tileId: 'H12',
+                positions: [[0, 0], [1, 0], [0, 1], [1, 1]],
+            },
+        ],
+    },
+    M08: {
+        image: 'img/map/08.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2]],
+        houseTiles: [
+            {
+                tileId: 'H13',
+                positions: [[1, 3], [2, 3], [1, 4], [2, 4]],
+            },
+        ],
+    },
+    M09: {
+        image: 'img/map/09.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2]],
+        houseTiles: [
+            {
+                tileId: 'H15',
+                positions: [[3, 3], [3, 4], [4, 3], [4, 4]],
+            },
+        ],
+    },
+    M10: {
+        image: 'img/map/10.svg',
+        roads: [[2, 0], [3, 0], [4, 0], [4, 1], [0, 2], [4, 2], [0, 3], [0, 4], [1, 4], [2, 4]],
+        houseTiles: [
+            {
+                tileId: 'H16',
+                positions: [[1, 1], [2, 1], [1, 2], [2, 2]],
+            },
+        ],
+    },
+    M11: {
+        image: 'img/map/11.svg',
+        roads: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [0, 1], [4, 1], [0, 2], [4, 2]],
+        houseTiles: [
+            {
+                tileId: 'H18',
+                positions: [[2, 1], [3, 1], [2, 2], [3, 2]],
+            },
+        ],
+    },
+    M12: {
+        image: 'img/map/12.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2]],
+        drinks: [
+            { type: 'lemonade', position: [3, 3] },
+        ],
+    },
+    M13: {
+        image: 'img/map/13.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2], [2, 3], [2, 4]],
+        drinks: [
+            { type: 'lemonade', position: [1, 1] },
+        ],
+    },
+    M14: {
+        image: 'img/map/14.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2], [2, 3], [2, 4]],
+        drinks: [
+            { type: 'beer', position: [1, 0] },
+        ],
+    },
+    M15: {
+        image: 'img/map/15.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2]],
+        drinks: [
+            { type: 'beer', position: [1, 0] },
+        ],
+    },
+    M16: {
+        image: 'img/map/16.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2]],
+        drinks: [
+            { type: 'coke', position: [1, 3] },
+        ],
+    },
+    M17: {
+        image: 'img/map/17.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2], [2, 3], [2, 4]],
+        drinks: [
+            { type: 'coke', position: [1, 1] },
+        ],
+    },
+    M18: {
+        image: 'img/map/18.svg',
+        roads: [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4]],
+        crossing: [[0, 2], [1, 2], [2, 2], [3, 2], [4, 2]],
+        drinks: [
+            { type: 'lemonade', position: [0, 1] },
+            { type: 'beer', position: [3, 4] },
+        ],
+    },
+    M19: {
+        image: 'img/map/19.svg',
+        roads: [[2, 0], [2, 1], [0, 2], [1, 2], [2, 2], [3, 2], [4, 2], [2, 3], [2, 4]],
+        drinks: [
+            { type: 'coke', position: [3, 0] },
+            { type: 'beer', position: [0, 3] },
+        ],
+    },
+    M20: {
+        image: 'img/map/20.svg',
+        roads: [[2, 0], [3, 0], [4, 0], [4, 1], [0, 2], [4, 2], [0, 3], [0, 4], [1, 4], [2, 4]],
+        drinks: [
+            { type: 'lemonade', position: [3, 1] },
+            { type: 'coke', position: [1, 3] },
+        ],
+    },
+};

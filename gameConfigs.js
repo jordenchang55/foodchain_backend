@@ -540,3 +540,23 @@ export const mapTiles = {
         ],
     },
 };
+
+export const houseTiles = {
+    H01: { fixed: false, garden: true, image: 'img/house/01.svg' },
+    H02: { fixed: true, garden: false, image: 'img/house/02.svg' },
+    H03: { fixed: false, garden: true, image: 'img/house/03.svg' },
+    H04: { fixed: true, garden: false, image: 'img/house/04.svg' },
+    H05: { fixed: true, garden: false, image: 'img/house/05.svg' },
+    H06: { fixed: false, garden: true, image: 'img/house/06.svg' },
+    H07: { fixed: true, garden: false, image: 'img/house/07.svg' },
+    H08: { fixed: true, garden: false, image: 'img/house/08.svg' },
+    H10: { fixed: true, garden: false, image: 'img/house/10.svg' },
+    H11: { fixed: false, garden: true, image: 'img/house/11.svg' },
+    H12: { fixed: true, garden: false, image: 'img/house/12.svg' },
+    H13: { fixed: true, garden: false, image: 'img/house/13.svg' },
+    H14: { fixed: false, garden: true, image: 'img/house/14.svg' },
+    H16: { fixed: true, garden: false, image: 'img/house/16.svg' },
+    H17: { fixed: false, garden: true, image: 'img/house/17.svg' },
+    H18: { fixed: true, garden: false, image: 'img/house/18.svg' },
+    H19: { fixed: false, garden: true, image: 'img/house/19.svg' },
+};

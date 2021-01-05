@@ -561,3 +561,96 @@ export const houseTiles = {
     H18: { fixed: true, garden: false, image: 'img/house/18.svg' },
     H19: { fixed: false, garden: true, image: 'img/house/19.svg' },
 };
+
+export const milestones = {
+    Mi01: {
+        image: 'img/milestone/Milestone-1.svg',
+        title: 'First burger marketed',
+        description: '+$5 for every burger sold',
+    },
+    Mi02: {
+        image: 'img/milestone/Milestone-2.svg',
+        title: 'First to have $20',
+        description: 'May see bank reserve cards',
+    },
+    Mi03: {
+        image: 'img/milestone/Milestone-3.svg',
+        title: 'First to lower prices',
+        description: 'Price -$1',
+    },
+    Mi04: {
+        image: 'img/milestone/Milestone-4.svg',
+        title: 'First to train someone',
+        description: '$15 discount on salaries',
+    },
+    Mi05: {
+        image: 'img/milestone/Milestone-5.svg',
+        title: 'First to pay $20 or more in salaries',
+        description: 'May use multiple trainers on the same person',
+    },
+    Mi06: {
+        image: 'img/milestone/Milestone-6.svg',
+        title: 'First pizza produced',
+        description: '+1 pizza cook',
+    },
+    Mi07: {
+        image: 'img/milestone/Milestone-7.svg',
+        title: 'First burger produced',
+        description: '+1 burger cook',
+    },
+    Mi08: {
+        image: 'img/milestone/Milestone-8.svg',
+        title: 'First cart operator played',
+        description: 'Buyers get range +1',
+    },
+    Mi09: {
+        image: 'img/milestone/Milestone-9.svg',
+        title: 'First to have $100',
+        description: 'Your CEO counts as CFO\n(+50% cash). May not have CFO',
+    },
+    Mi10: {
+        image: 'img/milestone/Milestone-10.svg',
+        title: 'First errand boy played',
+        description: 'All buyers get + 1\ndrink from each source',
+    },
+    Mi11: {
+        image: 'img/milestone/Milestone-11.svg',
+        title: 'First billboard placed',
+        description: 'No salaries for marketeers;\nEternal marketing',
+    },
+    Mi12: {
+        image: 'img/milestone/Milestone-12.svg',
+        title: 'First pizza marketed',
+        description: '+$5 for every pizza sold',
+    },
+    Mi13: {
+        image: 'img/milestone/Milestone-13.svg',
+        title: 'First drink marketed',
+        description: '+$5 for every drink sold',
+    },
+    Mi14: {
+        image: 'img/milestone/Milestone-14.svg',
+        title: 'First airplane campaign',
+        description: 'Count +2 open slots when\ndetermining order of play',
+    },
+    Mi15: {
+        image: 'img/milestone/Milestone-15.svg',
+        title: 'First radio campaign',
+        description: 'Your radios market 2 goods per turn instead of 1',
+    },
+    Mi16: {
+        image: 'img/milestone/Milestone-16.svg',
+        title: 'First to hire 3 people in 1 turn',
+        description: '+2 Management Trainees',
+    },
+    Mi17: {
+        image: 'img/milestone/Milestone-17.svg',
+        title: 'First to throw away drink or food',
+        description: 'Get a freezer that\nstores 10 items(drink/food)',
+    },
+    Mi18: {
+        image: 'img/milestone/Milestone-18.svg',
+        title: 'First waitress played',
+        description: 'Each waitress +$2',
+    },
+};

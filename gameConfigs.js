@@ -654,3 +654,103 @@ export const milestones = {
         description: 'Each waitress +$2',
     },
 };
+
+export const marketingTiles = {
+    Mk01: {
+        type: 'radio',
+        size: [1, 1],
+        image: 'img/marketing/Marketing_Tile-1.svg',
+        order: 1,
+    },
+    Mk02: {
+        type: 'radio',
+        size: [1, 1],
+        image: 'img/marketing/Marketing_Tile-2.svg',
+        order: 2,
+    },
+    Mk03: {
+        type: 'radio',
+        size: [1, 1],
+        image: 'img/marketing/Marketing_Tile-3.svg',
+        order: 3,
+    },
+    Mk04: {
+        type: 'airplane',
+        size: [1, 2],
+        image: 'img/marketing/Marketing_Tile-4.svg',
+        order: 4,
+    },
+    Mk05: {
+        type: 'airplane',
+        size: [3, 2],
+        image: 'img/marketing/Marketing_Tile-5.svg',
+        order: 5,
+    },
+    Mk06: {
+        type: 'airplane',
+        size: [5, 2],
+        image: 'img/marketing/Marketing_Tile-16.svg',
+        order: 6,
+    },
+    Mk07: {
+        type: 'mailbox',
+        size: [2, 2],
+        image: 'img/marketing/Marketing_Tile-8.svg',
+        order: 7,
+    },
+    Mk08: {
+        type: 'mailbox',
+        size: [2, 2],
+        image: 'img/marketing/Marketing_Tile-9.svg',
+        order: 8,
+    },
+    Mk09: {
+        type: 'mailbox',
+        size: [1, 1],
+        image: 'img/marketing/Marketing_Tile-6.svg',
+        order: 9,
+    },
+    Mk10: {
+        type: 'mailbox',
+        size: [1, 1],
+        image: 'img/marketing/Marketing_Tile-7.svg',
+        order: 10,
+    },
+    Mk11: {
+        type: 'billboard',
+        size: [3, 2],
+        image: 'img/marketing/Marketing_Tile-12.svg',
+        order: 11,
+    },
+    Mk12: {
+        type: 'billboard',
+        size: [2, 2],
+        image: 'img/marketing/Marketing_Tile-13.svg',
+        order: 12,
+    },
+    Mk13: {
+        type: 'billboard',
+        size: [1, 3],
+        image: 'img/marketing/Marketing_Tile-11.svg',
+        order: 13,
+    },
+    Mk14: {
+        type: 'billboard',
+        size: [2, 1],
+        image: 'img/marketing/Marketing_Tile-10.svg',
+        order: 14,
+    },
+    Mk15: {
+        type: 'billboard',
+        size: [1, 1],
+        image: 'img/marketing/Marketing_Tile-14.svg',
+        order: 15,
+    },
+    Mk16: {
+        type: 'billboard',
+        size: [1, 1],
+        image: 'img/marketing/Marketing_Tile-15.svg',
+        order: 16,
+    },
+
+};

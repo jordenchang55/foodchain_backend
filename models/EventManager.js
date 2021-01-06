@@ -12,7 +12,9 @@ export default class EventManager {
                 this.internalEventMap.$$player_add?.(payload.username);
                 Object.keys(this.socketEventMap)
                     .forEach((eventName) => {
-                        socket.on(eventName, this.socketEventMap[eventName]);
+                        socket.on(eventName, (msg) => {
+                            this.socketEventMap[eventName]?.(payload.username, msg);
+                        });
                     });
 
                 socket.on('disconnect', () => {

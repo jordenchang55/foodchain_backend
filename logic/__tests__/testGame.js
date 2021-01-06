@@ -109,24 +109,26 @@ describe('test Game', () => {
             const game = new Game(eventMgr);
             game.initialize(['user1', 'user2', 'user3']);
             const mockEventMgr = EventManager.mock.instances[0];
+            const done = jest.fn();
             game.onFirstRestaurantPick('user1', [
                 [0, 0, 3, 3],
                 [0, 0, 4, 3],
                 [0, 0, 3, 4],
                 [0, 0, 4, 4],
-            ], 0);
+            ], 0, done);
             game.onFirstRestaurantPick('user3', [
                 [2, 3, 3, 3],
                 [2, 3, 4, 3],
                 [2, 3, 3, 4],
                 [2, 3, 4, 4],
-            ], 0);
+            ], 0, done);
             game.onFirstRestaurantPick('user2', [
                 [0, 3, 3, 3],
                 [0, 3, 4, 3],
                 [0, 3, 3, 4],
                 [0, 3, 4, 4],
-            ], 0);
+            ], 0, done);
+            expect(done).toBeCalledTimes(1);
             expect(mockEventMgr.notifyAll.mock.calls).toMatchSnapshot();
         });
         it('skip restaurant pick', () => {

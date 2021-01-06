@@ -71,6 +71,7 @@ export default class Game {
     initialize(players) {
         this.turn = 1;
         this.phase = 1;
+        this.players = players;
         this.gameMap = setupMap(players.length);
         this.eventManager.notifyAll('setup_map', {
             tiles: this.gameMap.tileConfig,
@@ -84,23 +85,25 @@ export default class Game {
             available: [],
             selected: this.workingOrder,
         });
+
+        this.restaurants = {};
         this.setupRestaurants();
     }
 
     setupRestaurants() {
-        this.restaurants = {};
-
-        this.eventManager.on(
-            'pick_first_restaurant',
-            (username, msg) => this.onFirstRestaurantPick(username, [
-                msg.position.xTile,
-                msg.position.yTile,
-                msg.position.xSmall,
-                msg.position.ySmall,
-            ], msg.direction),
-        );
-        const firstPick = this.workingOrder[this.workingOrder.length - 1];
-        this.askFirstRestaurant(firstPick, true);
+        return new Promise((resolve) => {
+            this.eventManager.on(
+                'pick_first_restaurant',
+                (username, msg) => this.onFirstRestaurantPick(username, [
+                    msg.position.xTile,
+                    msg.position.yTile,
+                    msg.position.xSmall,
+                    msg.position.ySmall,
+                ], msg.direction, resolve),
+            );
+            const firstPick = this.workingOrder[this.workingOrder.length - 1];
+            this.askFirstRestaurant(firstPick, true);
+        });
     }
 
     askFirstRestaurant(username, skippable) {
@@ -110,7 +113,7 @@ export default class Game {
         });
     }
 
-    onFirstRestaurantPick(username, position, direction) {
+    onFirstRestaurantPick(username, position, direction, done) {
         if (!position) {
             this.restaurants[username] = null;
         } else {
@@ -128,7 +131,7 @@ export default class Game {
             nextIndex -= 1;
         }
         if (nextIndex < 0) {
-            // TODO perform next step
+            done?.();
         } else {
             const nextUser = this.workingOrder[nextIndex % this.workingOrder.length];
             this.askFirstRestaurant(nextUser, this.restaurants[nextUser] === undefined);

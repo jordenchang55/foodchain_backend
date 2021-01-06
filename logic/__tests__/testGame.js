@@ -92,4 +92,36 @@ describe('test Game', () => {
             expect(mockEventMgr.notifyAll.mock.calls[0][1].tiles.length).toBe(20);
         });
     });
+
+    describe('setupPool', () => {
+        it('2 players', () => {
+            const game = new Game(eventMgr);
+            const mockEventMgr = EventManager.mock.instances[0];
+            game.setupPool(2);
+            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('pool_update');
+            expect(mockEventMgr.notifyAll.mock.calls[0][1]).toMatchSnapshot();
+        });
+
+        it('3 players', () => {
+            const game = new Game(eventMgr);
+            const mockEventMgr = EventManager.mock.instances[0];
+            game.setupPool(3);
+            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('pool_update');
+            expect(mockEventMgr.notifyAll.mock.calls[0][1]).toMatchSnapshot();
+        });
+        it('4 players', () => {
+            const game = new Game(eventMgr);
+            const mockEventMgr = EventManager.mock.instances[0];
+            game.setupPool(4);
+            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('pool_update');
+            expect(mockEventMgr.notifyAll.mock.calls[0][1]).toMatchSnapshot();
+        });
+        it('5 players', () => {
+            const game = new Game(eventMgr);
+            const mockEventMgr = EventManager.mock.instances[0];
+            game.setupPool(5);
+            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('pool_update');
+            expect(mockEventMgr.notifyAll.mock.calls[0][1]).toMatchSnapshot();
+        });
+    });
 });

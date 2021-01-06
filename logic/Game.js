@@ -1,5 +1,5 @@
 import { shuffle } from '../utils/arr';
-import { mapTiles } from '../gameConfigs';
+import { employees, houseTiles, mapTiles, marketingTiles, milestones } from '../gameConfigs';
 import GameMap from './GameMap';
 
 export default class Game {
@@ -26,6 +26,46 @@ export default class Game {
                 },
             })),
         });
+    }
+
+    setupPool(playerNumber) {
+        const ads = { ...marketingTiles };
+        if (playerNumber < 5) {
+            delete ads.Mk16;
+        }
+        if (playerNumber < 4) {
+            delete ads.Mk15;
+        }
+        if (playerNumber < 3) {
+            delete ads.Mk12;
+        }
+        const pool = { // An event may contain 1 or more keys defined below
+            money: 50 * playerNumber,
+            employees: Object.keys(employees)
+                .map((id) => {
+                    let { amount } = employees[id];
+                    if (employees[id].limited) {
+                        amount = playerNumber - 2;
+                        if (amount === 0) {
+                            amount = 1;
+                        }
+                    }
+                    return ({
+                        id,
+                        amount,
+                    });
+                })
+                .reduce((map, e) => ({ ...map, [e.id]: e.amount }), {}),
+            milestones: {
+                remain: Object.keys(milestones),
+                achieved: {},
+                new: {},
+            },
+            houses: Object.keys(houseTiles).filter((key) => !houseTiles[key].fixed),
+            gardenNumber: 8,
+            ads: Object.keys(ads),
+        };
+        this.eventManager.notifyAll('pool_update', pool);
     }
 
     generateWorkingOrder(players) {

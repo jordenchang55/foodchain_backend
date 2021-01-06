@@ -282,4 +282,41 @@ describe('test Room', () => {
             });
         });
     });
+    describe('player exchange restaurant', () => {
+        it('exchange from 0 t0 1', () => {
+            const room = new Room(eventMgr);
+            const mockEventMgr = EventManager.mock.instances[0];
+            room.addPlayer('user1');
+            room.onPlayerExchanged('user1', 1);
+            expect(mockEventMgr.notifyAll).toHaveBeenLastCalledWith('player_list_update', {
+                players: {
+                    user1: {
+                        prepared: false,
+                        index: 1,
+                    },
+                },
+                spectaculars: [],
+            });
+        });
+        it('new player joined after exchange', () => {
+            const room = new Room(eventMgr);
+            const mockEventMgr = EventManager.mock.instances[0];
+            room.addPlayer('user1');
+            room.onPlayerExchanged('user1', 2);
+            room.addPlayer('user2');
+            expect(mockEventMgr.notifyAll).toHaveBeenLastCalledWith('player_list_update', {
+                players: {
+                    user1: {
+                        prepared: false,
+                        index: 2,
+                    },
+                    user2: {
+                        prepared: false,
+                        index: 0,
+                    },
+                },
+                spectaculars: [],
+            });
+        });
+    });
 });

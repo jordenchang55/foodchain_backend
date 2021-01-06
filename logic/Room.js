@@ -47,6 +47,10 @@ export class Room {
             'preparation',
             (u, msg) => this.onPlayerPrepared(u, msg.prepared),
         );
+        this.eventManager.on(
+            'exchange_place',
+            (u, msg) => this.onPlayerExchanged(u, msg.index),
+        );
     }
 
     onPlayerPrepared(username, prepared) {
@@ -57,6 +61,13 @@ export class Room {
         if (Object.values(this.players).length >= 2 && Object.values(this.players).every((p) => p.prepared)) {
             this.launchGame();
         }
+    }
+
+    onPlayerExchanged(username, index) {
+        if (this.players[username]) {
+            this.players[username].index = index;
+        }
+        this.notifyPlayerList();
     }
 
     notifyPlayerList() {

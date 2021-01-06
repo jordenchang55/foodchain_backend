@@ -1,10 +1,20 @@
 import { shuffle } from '../utils/arr';
 import { employees, houseTiles, mapTiles, marketingTiles, milestones } from '../gameConfigs';
 import GameMap from './GameMap';
+import { transformPosition } from '../utils/map';
 
 export default class Game {
     constructor(eventManager) {
         this.eventManager = eventManager;
+    }
+
+    initialize(players) {
+        this.turn = 1;
+        this.phase = 1;
+        this.setupMap(players.length);
+        this.setupPool(players.length);
+        this.generateWorkingOrder(players);
+        this.setupRestaurants();
     }
 
     setupMap(playerNumber) {
@@ -81,10 +91,51 @@ export default class Game {
         });
     }
 
+    setupRestaurants() {
+        this.restaurants = {};
+
+        this.eventManager.on(
+            'pick_first_restaurant',
+            (username, msg) => this.onFirstRestaurantPick(username, [
+                msg.position.xTile,
+                msg.position.yTile,
+                msg.position.xSmall,
+                msg.position.ySmall,
+            ], msg.direction),
+        );
+        const firstPick = this.workingOrder[this.workingOrder.length - 1];
+        this.askFirstRestaurant(firstPick, true);
+    }
+
     askFirstRestaurant(username, skippable) {
         this.eventManager.notifyAll('first_restaurant_decision', {
             nextPlayer: username,
             skippable,
         });
+    }
+
+    onFirstRestaurantPick(username, position, direction) {
+        if (!position) {
+            this.restaurants[username] = null;
+        } else {
+            this.gameMap.putTile(username, position.map((p) => transformPosition(p, direction)));
+            this.restaurants[username] = 1;
+            this.eventManager.notifyAll('tiles_placement', {
+                type: 'restaurant',
+                position,
+                direction,
+            });
+        }
+        let nextIndex = (this.workingOrder.indexOf(username) - 1 + this.workingOrder.length);
+
+        while (nextIndex >= 0 && this.restaurants[this.workingOrder[nextIndex % this.workingOrder.length]]) {
+            nextIndex -= 1;
+        }
+        if (nextIndex < 0) {
+            // TODO perform next step
+        } else {
+            const nextUser = this.workingOrder[nextIndex % this.workingOrder.length];
+            this.askFirstRestaurant(nextUser, this.restaurants[nextUser] === undefined);
+        }
     }
 }

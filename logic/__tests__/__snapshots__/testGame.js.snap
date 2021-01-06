@@ -1,5 +1,573 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`test Game initialize normal 1`] = `
+Array [
+  Array [
+    "setup_map",
+    Object {
+      "tiles": Array [
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 0,
+            "yTile": 0,
+          },
+          "tileId": "M10",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 1,
+            "yTile": 0,
+          },
+          "tileId": "M20",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 2,
+            "yTile": 0,
+          },
+          "tileId": "M04",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 0,
+            "yTile": 1,
+          },
+          "tileId": "M05",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 1,
+            "yTile": 1,
+          },
+          "tileId": "M06",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 2,
+            "yTile": 1,
+          },
+          "tileId": "M07",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 0,
+            "yTile": 2,
+          },
+          "tileId": "M08",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 1,
+            "yTile": 2,
+          },
+          "tileId": "M09",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 2,
+            "yTile": 2,
+          },
+          "tileId": "M01",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 0,
+            "yTile": 3,
+          },
+          "tileId": "M11",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 1,
+            "yTile": 3,
+          },
+          "tileId": "M12",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 2,
+            "yTile": 3,
+          },
+          "tileId": "M13",
+        },
+      ],
+    },
+  ],
+  Array [
+    "pool_update",
+    Object {
+      "ads": Array [
+        "Mk01",
+        "Mk02",
+        "Mk03",
+        "Mk04",
+        "Mk05",
+        "Mk06",
+        "Mk07",
+        "Mk08",
+        "Mk09",
+        "Mk10",
+        "Mk11",
+        "Mk12",
+        "Mk13",
+        "Mk14",
+      ],
+      "employees": Object {
+        "E01": 12,
+        "E02": 18,
+        "E03": 12,
+        "E04": 12,
+        "E05": 12,
+        "E06": 12,
+        "E07": 12,
+        "E08": 12,
+        "E09": 6,
+        "E10": 12,
+        "E11": 1,
+        "E12": 6,
+        "E13": 6,
+        "E14": 6,
+        "E15": 6,
+        "E16": 6,
+        "E17": 6,
+        "E18": 6,
+        "E19": 6,
+        "E20": 6,
+        "E21": 6,
+        "E22": 6,
+        "E23": 1,
+        "E24": 1,
+        "E25": 1,
+        "E26": 6,
+        "E27": 3,
+        "E28": 1,
+        "E29": 1,
+        "E30": 1,
+        "E31": 1,
+        "E32": 1,
+      },
+      "gardenNumber": 8,
+      "houses": Array [
+        "H01",
+        "H03",
+        "H06",
+        "H09",
+        "H11",
+        "H14",
+        "H17",
+        "H19",
+      ],
+      "milestones": Object {
+        "achieved": Object {},
+        "new": Object {},
+        "remain": Array [
+          "Mi01",
+          "Mi02",
+          "Mi03",
+          "Mi04",
+          "Mi05",
+          "Mi06",
+          "Mi07",
+          "Mi08",
+          "Mi09",
+          "Mi10",
+          "Mi11",
+          "Mi12",
+          "Mi13",
+          "Mi14",
+          "Mi15",
+          "Mi16",
+          "Mi17",
+          "Mi18",
+        ],
+      },
+      "money": 150,
+    },
+  ],
+  Array [
+    "order_decision",
+    Object {
+      "available": Array [],
+      "selected": Array [
+        "user2",
+        "user3",
+        "user1",
+      ],
+    },
+  ],
+  Array [
+    "first_restaurant_decision",
+    Object {
+      "nextPlayer": "user1",
+      "skippable": true,
+    },
+  ],
+  Array [
+    "tiles_placement",
+    Object {
+      "direction": 0,
+      "position": Array [
+        Array [
+          0,
+          0,
+          3,
+          3,
+        ],
+        Array [
+          0,
+          0,
+          4,
+          3,
+        ],
+        Array [
+          0,
+          0,
+          3,
+          4,
+        ],
+        Array [
+          0,
+          0,
+          4,
+          4,
+        ],
+      ],
+      "type": "restaurant",
+    },
+  ],
+  Array [
+    "first_restaurant_decision",
+    Object {
+      "nextPlayer": "user3",
+      "skippable": true,
+    },
+  ],
+  Array [
+    "tiles_placement",
+    Object {
+      "direction": 0,
+      "position": Array [
+        Array [
+          2,
+          3,
+          3,
+          3,
+        ],
+        Array [
+          2,
+          3,
+          4,
+          3,
+        ],
+        Array [
+          2,
+          3,
+          3,
+          4,
+        ],
+        Array [
+          2,
+          3,
+          4,
+          4,
+        ],
+      ],
+      "type": "restaurant",
+    },
+  ],
+  Array [
+    "first_restaurant_decision",
+    Object {
+      "nextPlayer": "user2",
+      "skippable": true,
+    },
+  ],
+  Array [
+    "tiles_placement",
+    Object {
+      "direction": 0,
+      "position": Array [
+        Array [
+          0,
+          3,
+          3,
+          3,
+        ],
+        Array [
+          0,
+          3,
+          4,
+          3,
+        ],
+        Array [
+          0,
+          3,
+          3,
+          4,
+        ],
+        Array [
+          0,
+          3,
+          4,
+          4,
+        ],
+      ],
+      "type": "restaurant",
+    },
+  ],
+]
+`;
+
+exports[`test Game initialize skip restaurant pick 1`] = `
+Array [
+  Array [
+    "setup_map",
+    Object {
+      "tiles": Array [
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 0,
+            "yTile": 0,
+          },
+          "tileId": "M10",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 1,
+            "yTile": 0,
+          },
+          "tileId": "M20",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 2,
+            "yTile": 0,
+          },
+          "tileId": "M04",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 0,
+            "yTile": 1,
+          },
+          "tileId": "M05",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 1,
+            "yTile": 1,
+          },
+          "tileId": "M06",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 2,
+            "yTile": 1,
+          },
+          "tileId": "M07",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 0,
+            "yTile": 2,
+          },
+          "tileId": "M08",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 1,
+            "yTile": 2,
+          },
+          "tileId": "M09",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 2,
+            "yTile": 2,
+          },
+          "tileId": "M01",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 0,
+            "yTile": 3,
+          },
+          "tileId": "M11",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 1,
+            "yTile": 3,
+          },
+          "tileId": "M12",
+        },
+        Object {
+          "direction": 0,
+          "position": Object {
+            "xTile": 2,
+            "yTile": 3,
+          },
+          "tileId": "M13",
+        },
+      ],
+    },
+  ],
+  Array [
+    "pool_update",
+    Object {
+      "ads": Array [
+        "Mk01",
+        "Mk02",
+        "Mk03",
+        "Mk04",
+        "Mk05",
+        "Mk06",
+        "Mk07",
+        "Mk08",
+        "Mk09",
+        "Mk10",
+        "Mk11",
+        "Mk12",
+        "Mk13",
+        "Mk14",
+      ],
+      "employees": Object {
+        "E01": 12,
+        "E02": 18,
+        "E03": 12,
+        "E04": 12,
+        "E05": 12,
+        "E06": 12,
+        "E07": 12,
+        "E08": 12,
+        "E09": 6,
+        "E10": 12,
+        "E11": 1,
+        "E12": 6,
+        "E13": 6,
+        "E14": 6,
+        "E15": 6,
+        "E16": 6,
+        "E17": 6,
+        "E18": 6,
+        "E19": 6,
+        "E20": 6,
+        "E21": 6,
+        "E22": 6,
+        "E23": 1,
+        "E24": 1,
+        "E25": 1,
+        "E26": 6,
+        "E27": 3,
+        "E28": 1,
+        "E29": 1,
+        "E30": 1,
+        "E31": 1,
+        "E32": 1,
+      },
+      "gardenNumber": 8,
+      "houses": Array [
+        "H01",
+        "H03",
+        "H06",
+        "H09",
+        "H11",
+        "H14",
+        "H17",
+        "H19",
+      ],
+      "milestones": Object {
+        "achieved": Object {},
+        "new": Object {},
+        "remain": Array [
+          "Mi01",
+          "Mi02",
+          "Mi03",
+          "Mi04",
+          "Mi05",
+          "Mi06",
+          "Mi07",
+          "Mi08",
+          "Mi09",
+          "Mi10",
+          "Mi11",
+          "Mi12",
+          "Mi13",
+          "Mi14",
+          "Mi15",
+          "Mi16",
+          "Mi17",
+          "Mi18",
+        ],
+      },
+      "money": 150,
+    },
+  ],
+  Array [
+    "order_decision",
+    Object {
+      "available": Array [],
+      "selected": Array [
+        "user2",
+        "user3",
+        "user1",
+      ],
+    },
+  ],
+  Array [
+    "first_restaurant_decision",
+    Object {
+      "nextPlayer": "user1",
+      "skippable": true,
+    },
+  ],
+  Array [
+    "first_restaurant_decision",
+    Object {
+      "nextPlayer": "user3",
+      "skippable": true,
+    },
+  ],
+  Array [
+    "first_restaurant_decision",
+    Object {
+      "nextPlayer": "user2",
+      "skippable": true,
+    },
+  ],
+  Array [
+    "first_restaurant_decision",
+    Object {
+      "nextPlayer": "user1",
+      "skippable": false,
+    },
+  ],
+]
+`;
+
 exports[`test Game setupPool 2 players 1`] = `
 Object {
   "ads": Array [

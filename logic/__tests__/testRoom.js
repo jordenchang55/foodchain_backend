@@ -88,6 +88,18 @@ describe('test Room', () => {
                 spectaculars: [],
             });
         });
+        it('add vacant seat at first', () => {
+            const room = new Room(eventMgr);
+            const mockEventMgr = EventManager.mock.instances[0];
+            room.addPlayer('user1');
+            room.addPlayer('user2');
+            room.addPlayer('user3');
+            room.addPlayer('user4');
+            room.removePlayer('user1');
+            room.removePlayer('user3');
+            room.addPlayer('new_user');
+            expect(mockEventMgr.notifyAll.mock.calls).toMatchSnapshot();
+        });
         it('player full', () => {
             const room = new Room(eventMgr, 2);
             const mockEventMgr = EventManager.mock.instances[0];

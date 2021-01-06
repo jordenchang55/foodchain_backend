@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test Room add player add vacant seat at first 1`] = `
+Array [
+  Array [
+    "player_list_update",
+    Object {
+      "players": Object {
+        "new_user": Object {
+          "index": 0,
+          "prepared": false,
+        },
+        "user2": Object {
+          "index": 1,
+          "prepared": false,
+        },
+        "user4": Object {
+          "index": 3,
+          "prepared": false,
+        },
+      },
+      "spectaculars": Array [],
+    },
+  ],
+  Array [
+    "player_list_update",
+    Object {
+      "players": Object {
+        "new_user": Object {
+          "index": 0,
+          "prepared": false,
+        },
+        "user2": Object {
+          "index": 1,
+          "prepared": false,
+        },
+        "user4": Object {
+          "index": 3,
+          "prepared": false,
+        },
+      },
+      "spectaculars": Array [],
+    },
+  ],
+  Array [
+    "player_list_update",
+    Object {
+      "players": Object {
+        "new_user": Object {
+          "index": 0,
+          "prepared": false,
+        },
+        "user2": Object {
+          "index": 1,
+          "prepared": false,
+        },
+        "user4": Object {
+          "index": 3,
+          "prepared": false,
+        },
+      },
+      "spectaculars": Array [],
+    },
+  ],
+  Array [
+    "player_list_update",
+    Object {
+      "players": Object {
+        "new_user": Object {
+          "index": 0,
+          "prepared": false,
+        },
+        "user2": Object {
+          "index": 1,
+          "prepared": false,
+        },
+        "user4": Object {
+          "index": 3,
+          "prepared": false,
+        },
+      },
+      "spectaculars": Array [],
+    },
+  ],
+  Array [
+    "player_list_update",
+    Object {
+      "players": Object {
+        "new_user": Object {
+          "index": 0,
+          "prepared": false,
+        },
+        "user2": Object {
+          "index": 1,
+          "prepared": false,
+        },
+        "user4": Object {
+          "index": 3,
+          "prepared": false,
+        },
+      },
+      "spectaculars": Array [],
+    },
+  ],
+  Array [
+    "player_list_update",
+    Object {
+      "players": Object {
+        "new_user": Object {
+          "index": 0,
+          "prepared": false,
+        },
+        "user2": Object {
+          "index": 1,
+          "prepared": false,
+        },
+        "user4": Object {
+          "index": 3,
+          "prepared": false,
+        },
+      },
+      "spectaculars": Array [],
+    },
+  ],
+  Array [
+    "player_list_update",
+    Object {
+      "players": Object {
+        "new_user": Object {
+          "index": 0,
+          "prepared": false,
+        },
+        "user2": Object {
+          "index": 1,
+          "prepared": false,
+        },
+        "user4": Object {
+          "index": 3,
+          "prepared": false,
+        },
+      },
+      "spectaculars": Array [],
+    },
+  ],
+]
+`;

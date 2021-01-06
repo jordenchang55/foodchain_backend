@@ -15,6 +15,45 @@ export const setupMap = (playerNumber) => {
     return new GameMap(xSize, ySize, configs);
 };
 
+export const setupPool = (playerNumber) => {
+    const ads = { ...marketingTiles };
+    if (playerNumber < 5) {
+        delete ads.Mk16;
+    }
+    if (playerNumber < 4) {
+        delete ads.Mk15;
+    }
+    if (playerNumber < 3) {
+        delete ads.Mk12;
+    }
+    return { // An event may contain 1 or more keys defined below
+        money: 50 * playerNumber,
+        employees: Object.keys(employees)
+            .map((id) => {
+                let { amount } = employees[id];
+                if (employees[id].limited) {
+                    amount = playerNumber - 2;
+                    if (amount === 0) {
+                        amount = 1;
+                    }
+                }
+                return ({
+                    id,
+                    amount,
+                });
+            })
+            .reduce((map, e) => ({ ...map, [e.id]: e.amount }), {}),
+        milestones: {
+            remain: Object.keys(milestones),
+            achieved: {},
+            new: {},
+        },
+        houses: Object.keys(houseTiles).filter((key) => !houseTiles[key].fixed),
+        gardenNumber: 8,
+        ads: Object.keys(ads),
+    };
+};
+
 export default class Game {
     constructor(eventManager) {
         this.eventManager = eventManager;
@@ -27,49 +66,10 @@ export default class Game {
         this.eventManager.notifyAll('setup_map', {
             tiles: this.gameMap.tileConfig,
         });
-        this.setupPool(players.length);
+        this.pool = setupPool(players.length);
+        this.eventManager.notifyAll('pool_update', this.pool);
         this.generateWorkingOrder(players);
         this.setupRestaurants();
-    }
-
-    setupPool(playerNumber) {
-        const ads = { ...marketingTiles };
-        if (playerNumber < 5) {
-            delete ads.Mk16;
-        }
-        if (playerNumber < 4) {
-            delete ads.Mk15;
-        }
-        if (playerNumber < 3) {
-            delete ads.Mk12;
-        }
-        const pool = { // An event may contain 1 or more keys defined below
-            money: 50 * playerNumber,
-            employees: Object.keys(employees)
-                .map((id) => {
-                    let { amount } = employees[id];
-                    if (employees[id].limited) {
-                        amount = playerNumber - 2;
-                        if (amount === 0) {
-                            amount = 1;
-                        }
-                    }
-                    return ({
-                        id,
-                        amount,
-                    });
-                })
-                .reduce((map, e) => ({ ...map, [e.id]: e.amount }), {}),
-            milestones: {
-                remain: Object.keys(milestones),
-                achieved: {},
-                new: {},
-            },
-            houses: Object.keys(houseTiles).filter((key) => !houseTiles[key].fixed),
-            gardenNumber: 8,
-            ads: Object.keys(ads),
-        };
-        this.eventManager.notifyAll('pool_update', pool);
     }
 
     generateWorkingOrder(players) {

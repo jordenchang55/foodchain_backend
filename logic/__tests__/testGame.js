@@ -1,4 +1,4 @@
-import Game, { setupMap } from '../Game';
+import Game, { setupMap, setupPool } from '../Game';
 import EventManager from '../../models/EventManager';
 
 jest.mock('../../models/EventManager');
@@ -91,33 +91,21 @@ describe('test Game', () => {
 
     describe('setupPool', () => {
         it('2 players', () => {
-            const game = new Game(eventMgr);
-            const mockEventMgr = EventManager.mock.instances[0];
-            game.setupPool(2);
-            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('pool_update');
-            expect(mockEventMgr.notifyAll.mock.calls[0][1]).toMatchSnapshot();
+            const pool = setupPool(2);
+            expect(pool).toMatchSnapshot();
         });
 
         it('3 players', () => {
-            const game = new Game(eventMgr);
-            const mockEventMgr = EventManager.mock.instances[0];
-            game.setupPool(3);
-            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('pool_update');
-            expect(mockEventMgr.notifyAll.mock.calls[0][1]).toMatchSnapshot();
+            const pool = setupPool(3);
+            expect(pool).toMatchSnapshot();
         });
         it('4 players', () => {
-            const game = new Game(eventMgr);
-            const mockEventMgr = EventManager.mock.instances[0];
-            game.setupPool(4);
-            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('pool_update');
-            expect(mockEventMgr.notifyAll.mock.calls[0][1]).toMatchSnapshot();
+            const pool = setupPool(4);
+            expect(pool).toMatchSnapshot();
         });
         it('5 players', () => {
-            const game = new Game(eventMgr);
-            const mockEventMgr = EventManager.mock.instances[0];
-            game.setupPool(5);
-            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('pool_update');
-            expect(mockEventMgr.notifyAll.mock.calls[0][1]).toMatchSnapshot();
+            const pool = setupPool(5);
+            expect(pool).toMatchSnapshot();
         });
     });
 

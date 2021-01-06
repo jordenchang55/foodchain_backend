@@ -108,6 +108,7 @@ describe('test Game', () => {
         it('normal', () => {
             const game = new Game(eventMgr);
             game.initialize(['user1', 'user2', 'user3']);
+            game.setup();
             const mockEventMgr = EventManager.mock.instances[0];
             const done = jest.fn();
             game.onFirstRestaurantPick('user1', [
@@ -134,11 +135,27 @@ describe('test Game', () => {
         it('skip restaurant pick', () => {
             const game = new Game(eventMgr);
             game.initialize(['user1', 'user2', 'user3']);
+            game.setup();
             const mockEventMgr = EventManager.mock.instances[0];
             game.onFirstRestaurantPick('user1', undefined);
             game.onFirstRestaurantPick('user3', undefined);
             game.onFirstRestaurantPick('user2', undefined);
             expect(mockEventMgr.notifyAll.mock.calls).toMatchSnapshot();
+        });
+    });
+
+    describe('askReserveCards', () => {
+        it('normal', () => {
+            const game = new Game(eventMgr);
+            game.initialize(['user1', 'user2', 'user3']);
+            const mockEventMgr = EventManager.mock.instances[0];
+            game.askReserveCards();
+            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('reserve_card_decision');
+            const done = jest.fn();
+            game.onReserveCardPick('user1', 100, done);
+            game.onReserveCardPick('user2', 200, done);
+            game.onReserveCardPick('user3', 300, done);
+            expect(done).toBeCalledTimes(1);
         });
     });
 });

@@ -3,6 +3,18 @@ import { employees, houseTiles, mapTiles, marketingTiles, milestones } from '../
 import GameMap from './GameMap';
 import { transformPosition } from '../utils/map';
 
+export const setupMap = (playerNumber) => {
+    const xSize = playerNumber >= 3 ? playerNumber : 3;
+    const ySize = playerNumber >= 3 ? 4 : 3;
+    const tileIds = shuffle(Object.keys(mapTiles)).slice(0, xSize * ySize);
+    const configs = tileIds
+        .map((tileId) => ({
+            tileId,
+            direction: Math.floor(Math.random() * 4),
+        }));
+    return new GameMap(xSize, ySize, configs);
+};
+
 export default class Game {
     constructor(eventManager) {
         this.eventManager = eventManager;
@@ -11,31 +23,13 @@ export default class Game {
     initialize(players) {
         this.turn = 1;
         this.phase = 1;
-        this.setupMap(players.length);
+        this.gameMap = setupMap(players.length);
+        this.eventManager.notifyAll('setup_map', {
+            tiles: this.gameMap.tileConfig,
+        });
         this.setupPool(players.length);
         this.generateWorkingOrder(players);
         this.setupRestaurants();
-    }
-
-    setupMap(playerNumber) {
-        const xSize = playerNumber >= 3 ? playerNumber : 3;
-        const ySize = playerNumber >= 3 ? 4 : 3;
-        const tiles = shuffle(Object.keys(mapTiles));
-        const randomTiles = tiles.slice(0, xSize * ySize)
-            .map((tileId) => ({
-                tileId,
-                direction: Math.floor(Math.random() * 4),
-            }));
-        this.gameMap = new GameMap(xSize, ySize, randomTiles);
-        this.eventManager.notifyAll('setup_map', {
-            tiles: randomTiles.map((tile, index) => ({
-                ...tile,
-                position: {
-                    xTile: index % xSize,
-                    yTile: Math.floor(index / xSize),
-                },
-            })),
-        });
     }
 
     setupPool(playerNumber) {

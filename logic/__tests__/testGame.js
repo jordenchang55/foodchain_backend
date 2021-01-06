@@ -1,4 +1,4 @@
-import Game from '../Game';
+import Game, { setupMap } from '../Game';
 import EventManager from '../../models/EventManager';
 
 jest.mock('../../models/EventManager');
@@ -60,36 +60,32 @@ describe('test Game', () => {
 
     describe('setupMap', () => {
         it('2 players', () => {
-            const game = new Game(eventMgr);
-            const mockEventMgr = EventManager.mock.instances[0];
-            game.setupMap(2);
-            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('setup_map');
-            expect(mockEventMgr.notifyAll.mock.calls[0][1].tiles.length).toBe(9);
-            expect(mockEventMgr.notifyAll.mock.calls[0][1].tiles.map((t) => t.tileId)).toBeDistinct();
-            expect(mockEventMgr.notifyAll.mock.calls[0][1].tiles.map((t) => t.position).map((t) => JSON.stringify(t)))
+            const gameMap = setupMap(2);
+            expect(gameMap.tileConfig.length).toBe(9);
+            expect(gameMap.tileConfig.map((t) => t.tileId)).toBeDistinct();
+            expect(gameMap.tileConfig.map((t) => t.position).map((t) => JSON.stringify(t)))
                 .toBeDistinct();
         });
         it('3 players', () => {
-            const game = new Game(eventMgr);
-            const mockEventMgr = EventManager.mock.instances[0];
-            game.setupMap(3);
-            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('setup_map');
-            expect(mockEventMgr.notifyAll.mock.calls[0][1].tiles.map((t) => t.position).map((t) => JSON.stringify(t)))
+            const gameMap = setupMap(3);
+            expect(gameMap.tileConfig.length).toBe(12);
+            expect(gameMap.tileConfig.map((t) => t.tileId)).toBeDistinct();
+            expect(gameMap.tileConfig.map((t) => t.position).map((t) => JSON.stringify(t)))
                 .toBeDistinct();
         });
         it('4 players', () => {
-            const game = new Game(eventMgr);
-            const mockEventMgr = EventManager.mock.instances[0];
-            game.setupMap(4);
-            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('setup_map');
-            expect(mockEventMgr.notifyAll.mock.calls[0][1].tiles.length).toBe(16);
+            const gameMap = setupMap(4);
+            expect(gameMap.tileConfig.length).toBe(16);
+            expect(gameMap.tileConfig.map((t) => t.tileId)).toBeDistinct();
+            expect(gameMap.tileConfig.map((t) => t.position).map((t) => JSON.stringify(t)))
+                .toBeDistinct();
         });
         it('5 players', () => {
-            const game = new Game(eventMgr);
-            const mockEventMgr = EventManager.mock.instances[0];
-            game.setupMap(5);
-            expect(mockEventMgr.notifyAll.mock.calls[0][0]).toBe('setup_map');
-            expect(mockEventMgr.notifyAll.mock.calls[0][1].tiles.length).toBe(20);
+            const gameMap = setupMap(5);
+            expect(gameMap.tileConfig.length).toBe(20);
+            expect(gameMap.tileConfig.map((t) => t.tileId)).toBeDistinct();
+            expect(gameMap.tileConfig.map((t) => t.position).map((t) => JSON.stringify(t)))
+                .toBeDistinct();
         });
     });
 

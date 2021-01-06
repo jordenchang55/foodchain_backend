@@ -17,12 +17,17 @@ export default class GameMap {
             this.internalMap[row] = new Array(xSize * 5).fill(0);
         }
 
-        configs.forEach((config, idx) => {
+        this.tileConfig = configs.map((config, idx) => ({
+            ...config,
+            position: {
+                xTile: idx % xSize,
+                yTile: Math.floor(idx / xSize),
+            },
+        }));
+        this.tileConfig.forEach((config) => {
             const tile = mapTiles[config.tileId];
-            const row = Math.floor(idx / xSize);
-            const col = idx % xSize;
             const offsetPosition = (positions) => positions?.map((pos) => transformPosition(pos, config.direction))
-                .map((pos) => ({ x: pos[0] + col * 5, y: pos[1] + row * 5 }));
+                .map((pos) => ({ x: pos[0] + config.position.xTile * 5, y: pos[1] + config.position.yTile * 5 }));
 
             offsetPosition(tile.roads)?.forEach((pos) => {
                 this.internalMap[pos.y][pos.x] = 1;

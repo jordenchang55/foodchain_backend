@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`test Game generateWorkingOrder success 1`] = `
+Array [
+  "user2",
+  "user3",
+  "user1",
+]
+`;
+
 exports[`test Game initialize normal 1`] = `
 Array [
   Array [

@@ -54,6 +54,15 @@ export const setupPool = (playerNumber) => {
     };
 };
 
+export const generateWorkingOrder = (players) => {
+    const order = [];
+    for (let i = 0; i < players.length; i += 1) {
+        order.push(i);
+    }
+    const randomOrder = shuffle(order);
+    return randomOrder.map((i) => players[i]);
+};
+
 export default class Game {
     constructor(eventManager) {
         this.eventManager = eventManager;
@@ -66,23 +75,16 @@ export default class Game {
         this.eventManager.notifyAll('setup_map', {
             tiles: this.gameMap.tileConfig,
         });
+
         this.pool = setupPool(players.length);
         this.eventManager.notifyAll('pool_update', this.pool);
-        this.generateWorkingOrder(players);
-        this.setupRestaurants();
-    }
 
-    generateWorkingOrder(players) {
-        const order = [];
-        for (let i = 0; i < players.length; i += 1) {
-            order.push(i);
-        }
-        const randomOrder = shuffle(order);
-        this.workingOrder = randomOrder.map((i) => players[i]);
+        this.workingOrder = generateWorkingOrder(players);
         this.eventManager.notifyAll('order_decision', {
             available: [],
             selected: this.workingOrder,
         });
+        this.setupRestaurants();
     }
 
     setupRestaurants() {

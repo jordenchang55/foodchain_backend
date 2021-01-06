@@ -1,4 +1,4 @@
-import Game, { setupMap, setupPool } from '../Game';
+import Game, { generateWorkingOrder, setupMap, setupPool } from '../Game';
 import EventManager from '../../models/EventManager';
 
 jest.mock('../../models/EventManager');
@@ -27,13 +27,8 @@ describe('test Game', () => {
     });
     describe('generateWorkingOrder', () => {
         it('success', () => {
-            const game = new Game(eventMgr);
-            game.generateWorkingOrder(['user1', 'user2', 'user3']);
-            const mockEventMgr = EventManager.mock.instances[0];
-            expect(mockEventMgr.notifyAll).toBeCalledWith('order_decision', {
-                available: [],
-                selected: expect.arrayContaining(['user1', 'user2', 'user3']),
-            });
+            const order = generateWorkingOrder(['user1', 'user2', 'user3']);
+            expect(order).toMatchSnapshot();
         });
     });
 

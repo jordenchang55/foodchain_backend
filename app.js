@@ -12,7 +12,19 @@ import EventManager from './models/EventManager';
 const app = express();
 
 const http = createServer(app);
-const io = socketIO(http);
+
+let socketOptions;
+if (process.env.DEBUG) {
+    socketOptions = {
+        cors: {
+            origin: 'http://localhost:8080',
+            methods: ['GET', 'POST'],
+        },
+    };
+} else {
+    socketOptions = {};
+}
+const io = socketIO(http, socketOptions);
 
 const eventManager = new EventManager(io);
 // eslint-disable-next-line no-unused-vars
@@ -26,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', rootRouter);
 
-app.get('*', (req,res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 

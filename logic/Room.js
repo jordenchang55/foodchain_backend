@@ -6,7 +6,7 @@ export class Room {
     constructor(eventManager, capacity = 5) {
         this.eventManager = eventManager;
         this.capacity = capacity;
-        this.players = {};
+        this.playerStatus = {};
         this.spectaculars = {};
         this.isPlaying = false;
 
@@ -14,14 +14,14 @@ export class Room {
     }
 
     addPlayer(username) {
-        const playerNum = Object.keys(this.players).length;
+        const playerNum = Object.keys(this.playerStatus).length;
         if (playerNum >= this.capacity || this.isPlaying) {
             this.spectaculars[username] = {};
         } else {
-            const seat = Object.values(this.players)
+            const seat = Object.values(this.playerStatus)
                 .map((p) => p.index)
                 .reduce((prev, curr) => (curr === prev ? (curr + 1) : Math.min(prev, curr)), 0);
-            this.players[username] = {
+            this.playerStatus[username] = {
                 prepared: false,
                 index: seat,
             };
@@ -30,8 +30,8 @@ export class Room {
     }
 
     removePlayer(username) {
-        if (this.players[username]) {
-            delete this.players[username];
+        if (this.playerStatus[username]) {
+            delete this.playerStatus[username];
         } else {
             delete this.spectaculars[username];
         }
@@ -56,25 +56,25 @@ export class Room {
     }
 
     onPlayerPrepared(username, prepared) {
-        if (this.players[username]) {
-            this.players[username].prepared = prepared;
+        if (this.playerStatus[username]) {
+            this.playerStatus[username].prepared = prepared;
         }
         this.notifyPlayerList();
-        if (Object.values(this.players).length >= 2 && Object.values(this.players).every((p) => p.prepared)) {
+        if (Object.values(this.playerStatus).length >= 2 && Object.values(this.playerStatus).every((p) => p.prepared)) {
             this.launchGame();
         }
     }
 
     onPlayerExchanged(username, index) {
-        if (this.players[username]) {
-            this.players[username].index = index;
+        if (this.playerStatus[username]) {
+            this.playerStatus[username].index = index;
         }
         this.notifyPlayerList();
     }
 
     notifyPlayerList() {
         this.eventManager.notifyAll('player_list_update', {
-            players: this.players,
+            players: this.playerStatus,
             spectaculars: Object.keys(this.spectaculars),
         });
     }
@@ -82,11 +82,11 @@ export class Room {
     launchGame() {
         this.isPlaying = true;
         this.eventManager.notifyAll('launch', {
-            players: this.players,
+            players: this.playerStatus,
             spectaculars: Object.keys(this.spectaculars),
         });
         this.game = new Game(this.eventManager);
-        this.game.initialize(this.players);
+        this.game.initialize(Object.keys(this.playerStatus));
         this.game.setup();
     }
 }

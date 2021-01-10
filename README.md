@@ -1,4 +1,4 @@
-This is codebase of [FoodChain](https://github.com/LuisHsu/foodchain) project.
+This is codebase of backend for [FoodChain](https://github.com/LuisHsu/foodchain) project.
 To learn more about the context of this project, please check README on [FoodChain](https://github.com/LuisHsu/foodchain).
 
 ------

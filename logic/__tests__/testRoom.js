@@ -6,6 +6,7 @@ jest.mock('../../models/EventManager');
 describe('test Room', () => {
     let eventMgr;
     beforeEach(() => {
+        jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
         EventManager.mockClear();
         eventMgr = new EventManager();
     });
@@ -127,19 +128,7 @@ describe('test Room', () => {
             room.addPlayer('user2');
             room.onPlayerPrepared('user1', true);
             room.onPlayerPrepared('user2', true);
-            expect(mockEventMgr.notifyAll).toHaveBeenLastCalledWith('launch', {
-                players: {
-                    user1: {
-                        prepared: true,
-                        index: 0,
-                    },
-                    user2: {
-                        prepared: true,
-                        index: 1,
-                    },
-                },
-                spectaculars: [],
-            });
+            expect(mockEventMgr.notifyAll.mock.calls).toMatchSnapshot();
             room.addPlayer('user3');
             expect(mockEventMgr.notifyAll).toHaveBeenLastCalledWith('player_list_update', {
                 players: {
@@ -266,32 +255,7 @@ describe('test Room', () => {
                 spectaculars: [],
             });
             room.onPlayerPrepared('user2', true);
-            expect(mockEventMgr.notifyAll).toHaveBeenNthCalledWith(4, 'player_list_update', {
-                players: {
-                    user1: {
-                        prepared: true,
-                        index: 0,
-                    },
-                    user2: {
-                        prepared: true,
-                        index: 1,
-                    },
-                },
-                spectaculars: [],
-            });
-            expect(mockEventMgr.notifyAll).toHaveBeenLastCalledWith('launch', {
-                players: {
-                    user1: {
-                        prepared: true,
-                        index: 0,
-                    },
-                    user2: {
-                        prepared: true,
-                        index: 1,
-                    },
-                },
-                spectaculars: [],
-            });
+            expect(mockEventMgr.notifyAll.mock.calls).toMatchSnapshot();
         });
     });
     describe('player exchange restaurant', () => {

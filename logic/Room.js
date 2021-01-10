@@ -1,5 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 
+import Game from './Game';
+
 export class Room {
     constructor(eventManager, capacity = 5) {
         this.eventManager = eventManager;
@@ -83,5 +85,8 @@ export class Room {
             players: this.players,
             spectaculars: Object.keys(this.spectaculars),
         });
+        this.game = new Game(this.eventManager);
+        this.game.initialize(this.players);
+        this.game.setup();
     }
 }

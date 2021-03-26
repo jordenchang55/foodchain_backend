@@ -1,4 +1,4 @@
-import Game, { generateWorkingOrder, setupMap, setupPool } from '../Game';
+import Game, { generateWorkingOrder, setupMap } from '../Game';
 import EventManager from '../../models/EventManager';
 
 jest.mock('../../models/EventManager');
@@ -81,26 +81,6 @@ describe('test Game', () => {
             expect(gameMap.tileConfig.map((t) => t.tileId)).toBeDistinct();
             expect(gameMap.tileConfig.map((t) => t.position).map((t) => JSON.stringify(t)))
                 .toBeDistinct();
-        });
-    });
-
-    describe('setupPool', () => {
-        it('2 players', () => {
-            const pool = setupPool(2);
-            expect(pool).toMatchSnapshot();
-        });
-
-        it('3 players', () => {
-            const pool = setupPool(3);
-            expect(pool).toMatchSnapshot();
-        });
-        it('4 players', () => {
-            const pool = setupPool(4);
-            expect(pool).toMatchSnapshot();
-        });
-        it('5 players', () => {
-            const pool = setupPool(5);
-            expect(pool).toMatchSnapshot();
         });
     });
 

@@ -1,7 +1,8 @@
 import { shuffle } from '../utils/arr';
-import { employees, houseTiles, mapTiles, marketingTiles, milestones } from '../gameConfigs';
+import { mapTiles } from '../gameConfigs';
 import GameMap from './GameMap';
 import { transformPosition } from '../utils/map';
+import Pool from './Pool';
 
 export const setupMap = (playerNumber) => {
     const xSize = playerNumber >= 3 ? playerNumber : 3;
@@ -13,45 +14,6 @@ export const setupMap = (playerNumber) => {
             direction: Math.floor(Math.random() * 4),
         }));
     return new GameMap(xSize, ySize, configs);
-};
-
-export const setupPool = (playerNumber) => {
-    const ads = { ...marketingTiles };
-    if (playerNumber < 5) {
-        delete ads.Mk16;
-    }
-    if (playerNumber < 4) {
-        delete ads.Mk15;
-    }
-    if (playerNumber < 3) {
-        delete ads.Mk12;
-    }
-    return { // An event may contain 1 or more keys defined below
-        money: 50 * playerNumber,
-        employees: Object.keys(employees)
-            .map((id) => {
-                let { amount } = employees[id];
-                if (employees[id].limited) {
-                    amount = playerNumber - 2;
-                    if (amount === 0) {
-                        amount = 1;
-                    }
-                }
-                return ({
-                    id,
-                    amount,
-                });
-            })
-            .reduce((map, e) => ({ ...map, [e.id]: e.amount }), {}),
-        milestones: {
-            remain: Object.keys(milestones),
-            achieved: {},
-            new: {},
-        },
-        houses: Object.keys(houseTiles).filter((key) => !houseTiles[key].fixed),
-        gardenNumber: 8,
-        ads: Object.keys(ads),
-    };
 };
 
 export const generateWorkingOrder = (players) => {
@@ -82,8 +44,8 @@ export default class Game {
             tiles: this.gameMap.tileConfig,
         });
 
-        this.pool = setupPool(this.players.length);
-        this.eventManager.notifyAll('pool_update', this.pool);
+        this.pool = new Pool(this.players.length);
+        this.eventManager.notifyAll('pool_update', this.pool.toObject());
 
         this.workingOrder = generateWorkingOrder(this.players);
         this.eventManager.notifyAll('order_decision', {

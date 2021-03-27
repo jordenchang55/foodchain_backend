@@ -138,4 +138,29 @@ describe('test Game', () => {
             expect(done).toBeCalledTimes(1);
         });
     });
+
+    describe('lock structure', () => {
+        it('empty structure', () => {
+            const game = new Game(eventMgr);
+            const mockEventMgr = EventManager.mock.instances[0];
+
+            game.initialize(['user1', 'user2', 'user3']);
+            game.onStructureLocked('user1', {});
+            game.onStructureLocked('user2', {});
+            game.onStructureLocked('user3', {});
+
+            expect(mockEventMgr.notifyAll.mock.calls).toMatchSnapshot();
+        });
+        it('one employee structure', () => {
+            const game = new Game(eventMgr);
+            const mockEventMgr = EventManager.mock.instances[0];
+
+            game.initialize(['user1', 'user2', 'user3']);
+            game.onStructureLocked('user1', { E01: 1 });
+            game.onStructureLocked('user2', { E02: 1 });
+            game.onStructureLocked('user3', { E03: 1 });
+
+            expect(mockEventMgr.notifyAll.mock.calls).toMatchSnapshot();
+        });
+    });
 });

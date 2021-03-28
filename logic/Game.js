@@ -19,11 +19,15 @@ export const setupMap = (playerNumber) => {
 
 export const generateWorkingOrder = (players) => {
     const order = [];
-    for (let i = 0; i < players.length; i += 1) {
+    for (let i = 1; i <= players.length; i += 1) {
         order.push(i);
     }
-    const randomOrder = shuffle(order);
-    return randomOrder.map((i) => players[i]);
+    const randomPlayers = shuffle(players);
+    const workingOrder = {};
+    randomPlayers.forEach((p, i) => {
+        workingOrder[p] = order[i];
+    });
+    return workingOrder;
 };
 
 export default class Game {
@@ -95,7 +99,8 @@ export default class Game {
                     msg.position.ySmall,
                 ], msg.direction, resolve),
             );
-            const firstPick = this.workingOrder[this.workingOrder.length - 1];
+            const firstPick = Object.keys(this.workingOrder)
+                .reduce((maxKey, k) => (this.workingOrder[k] > (this.workingOrder[maxKey] ?? 0) ? k : maxKey), '');
             this.askFirstRestaurant(firstPick, true);
         });
     }
@@ -121,17 +126,18 @@ export default class Game {
             });
             this.eventManager.notifyAll('player_update', this.playerProps);
         }
-        let nextIndex = (this.workingOrder.indexOf(username) - 1 + this.workingOrder.length);
-
-        while (nextIndex >= 0 && this.restaurants[this.workingOrder[nextIndex % this.workingOrder.length]]) {
-            nextIndex -= 1;
-        }
-        if (nextIndex < 0) {
+        if (Object.values(this.restaurants).filter((r) => r).length === Object.keys(this.playerProps).length) {
             done?.();
-        } else {
-            const nextUser = this.workingOrder[nextIndex % this.workingOrder.length];
-            this.askFirstRestaurant(nextUser, this.restaurants[nextUser] === undefined);
+            return;
         }
+        let nextIndex = this.workingOrder[username] - 1;
+        if (nextIndex <= 0) {
+            nextIndex += Object.keys(this.workingOrder).length;
+        }
+
+        const nextPlayer = Object.keys(this.workingOrder)
+            .filter((player) => this.workingOrder[player] === nextIndex)[0];
+        this.askFirstRestaurant(nextPlayer, this.restaurants[nextPlayer] === undefined);
     }
 
     askReserveCards() {
@@ -154,6 +160,7 @@ export default class Game {
      * When a player finalize their structure, this callback will be invoked.
      * @param username key of that player.
      * @param structure a map of employee id with number of that card.
+     * @param onComplete callback invoked when everyone is locked.
      */
     onStructureLocked(username, structure, onComplete) {
         this.playerProps[username].structure = new Structure(structure);
@@ -184,7 +191,41 @@ export default class Game {
                     // Use the working order of last turn for tie breaker
                     return this.lastWorkingOrder[a] - this.lastWorkingOrder[b];
                 });
+            this.lastWorkingOrder = this.workingOrder;
+            this.workingOrder = {};
             onComplete?.();
         }
+    }
+
+    onOrderDecided(username, msg) {
+        // Notify next one
+        this.workingOrder[username] = msg.order;
+        if (Object.keys(this.workingOrder).length === Object.keys(this.playerProps).length) {
+            // TODO: notify starting to work
+        } else {
+            this.askOrderDecision();
+        }
+    }
+
+    askOrderDecision() {
+        const available = [];
+        for (let i = 1; i <= Object.keys(this.playerProps).length; i += 1) {
+            if (!Object.values(this.workingOrder).includes(i)) {
+                available.push(i);
+            }
+        }
+
+        const selected = new Array(Object.keys(this.playerProps).length).fill(null);
+
+        Object.entries(this.workingOrder)
+            .forEach((e) => {
+                [selected[e[1] - 1]] = e;
+            });
+
+        this.eventManager.notifyAll('order_decision', {
+            available, // maybe empty array
+            nextPlayer: this.decisionOrder[Object.keys(this.workingOrder).length],
+            selected,
+        });
     }
 }
